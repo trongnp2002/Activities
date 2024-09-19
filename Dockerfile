@@ -14,9 +14,9 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine AS final
 WORKDIR /app
 
 COPY --from=build /app .
+COPY --from=build /app/temp_data/*.db /app/data/
 
 # Ensure the app has access to the data folder for SQLite
 RUN mkdir -p /app/data && chmod -R 777 /app/data
-COPY /source/API/*.db /app/data/
 
 ENTRYPOINT ["dotnet", "API.dll"]
