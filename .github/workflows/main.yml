@@ -12,7 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
+    - name: Copy appsettings.json
+      run: cp /project-config/activities/appsettings.json ./API/
     - name: Run `docker compose`
       run: docker compose up --build -d
     
