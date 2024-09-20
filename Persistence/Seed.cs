@@ -2,12 +2,12 @@ using Domain;
 
 namespace Persistence
 {
-     public class Seed
+    public class Seed
     {
         public static async Task SeedData(DataContext context)
         {
             if (context.Activities.Any()) return;
-            
+
             var activities = new List<Activity>
             {
                 new Activity
@@ -105,6 +105,80 @@ namespace Persistence
             await context.Activities.AddRangeAsync(activities);
             await context.SaveChangesAsync();
         }
-    }
 
+        public static async Task SeedDataUserBookings(DataContext context)
+        {
+            if (context.UserBookings.Any()) return;
+
+            var userBookings = new List<UserBooking>
+            {
+                new UserBooking
+                {
+                    Subject = "Decoding",
+                    StartTime = new DateTime(2024, 9, 19, 9, 30, 0), // month is 9 for September
+                    EndTime = new DateTime(2024, 9, 19, 10, 30, 0),
+                    IsAllDay = false,
+                },
+                new UserBooking
+                {
+                    Subject = "Bug Automation",
+                    StartTime = new DateTime(2024, 9, 6, 13, 30, 0),
+                    EndTime = new DateTime(2024, 9, 6, 16, 30, 0),
+                    IsAllDay = false
+                },
+                new UserBooking
+                {
+                    Subject = "Functionality testing",
+                    StartTime = new DateTime(2024, 9, 7, 9, 0, 0),
+                    EndTime = new DateTime(2024, 9, 7, 10, 30, 0),
+                    IsAllDay = false
+                },
+                new UserBooking
+                {
+                    Subject = "Resolution-based testing",
+                    StartTime = new DateTime(2024, 9, 4, 12, 0, 0),
+                    EndTime = new DateTime(2024, 9, 4, 13, 0, 0),
+                    IsAllDay = false
+                },
+                new UserBooking
+                {
+                    Subject = "Test report Validation",
+                    StartTime = new DateTime(2024, 9, 22, 15, 0, 0),
+                    EndTime = new DateTime(2024, 9, 22, 18, 0, 0),
+                    IsAllDay = false
+                },
+                new UserBooking
+                {
+                    Subject = "Test case correction",
+                    StartTime = new DateTime(2024, 9, 15, 14, 0, 0),
+                    EndTime = new DateTime(2024, 9, 15, 16, 0, 0),
+                    IsAllDay = false,
+                },
+                new UserBooking
+                {
+                    Subject = "Bug fixing",
+                    StartTime = new DateTime(2024, 9, 30, 14, 30, 0),
+                    EndTime = new DateTime(2024, 9, 30, 18, 30, 0),
+                    IsAllDay = false,
+                },
+                new UserBooking
+                {
+                    Subject = "Run test cases",
+                    StartTime = new DateTime(2024, 9, 24, 17, 30, 0),
+                    EndTime = new DateTime(2024, 9, 24, 19, 30, 0),
+                    IsAllDay = false,
+                },
+                new UserBooking
+                {
+                    Subject = "Bug Automation",
+                    StartTime = new DateTime(2024, 9, 14, 18, 30, 0),
+                    EndTime = new DateTime(2024, 9, 14, 20, 0, 0),
+                    IsAllDay = false
+                }
+            };
+
+            await context.UserBookings.AddRangeAsync(userBookings);
+            await context.SaveChangesAsync();
+        }
+    }
 }

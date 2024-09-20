@@ -3,7 +3,6 @@ using Application.Core;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 
 namespace API.Extensions
