@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using API.Extensions;
 using API.Middleware;
 using Domain;
@@ -14,7 +15,12 @@ builder.Services.AddControllers(opt =>
 {
     var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
     opt.Filters.Add(new AuthorizeFilter(policy));
-});
+}).AddJsonOptions(
+    options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        }
+);
 
 // Add application services to the container
 builder.Services.AddApplicationService(builder.Configuration);
